@@ -16,7 +16,7 @@ congress_set_key <- function(key) {
       cat("API Key set:", key)
     } else {
 
-      cat("Existing key was not overwritten")
+      cat("Existing key preserved.")
 
     }
 
