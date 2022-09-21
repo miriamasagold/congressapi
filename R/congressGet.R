@@ -43,7 +43,7 @@ congressGet <-
     } else {
 
       # Return content from parsed response
-      return(parsed$content)
+      return(parsed)
 
     }
 

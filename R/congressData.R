@@ -288,7 +288,7 @@ congressData.committeeReport <- function(parsed) {
 
   cmteRep_df <- parsed[['content']][['reports']]
 
-  if (is.null(cmteRep)) {
+  if (is.null(cmteRep_df)) {
 
     message("Warning: endpoint cannot be coerced to dataframe\n")
 
@@ -413,7 +413,7 @@ congressData.nomination <- function(parsed) {
       )
 
     nom_latestAction <-
-      nom_renamed[['latestAction']]
+      nom_df[['latestAction']]
 
     latestAction <-
       do.call(rbind,
