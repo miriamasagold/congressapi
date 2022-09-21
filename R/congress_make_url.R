@@ -1,4 +1,4 @@
-congress_make_url <- function(endpoint, ...) {
+congress_make_url <- function(endpoint) {
 
   base_url <- "https://api.congress.gov/v3"
 

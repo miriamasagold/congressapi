@@ -8,16 +8,19 @@ congress_set_key <- function(key) {
 
     cat("Congress API already set. Do you wish to overwrite the existing key?")
 
-    resp <- readline("[Yes/No]: ")
+    resp <- readline("[Y/n]: ")
 
-    if (resp == "Yes") {
+    if (resp == "Y") {
       Sys.setenv("CONGRESS_API_KEY" = key)
 
       cat("API Key set:", key)
-    } else {
+    } else if (resp == "n") {
 
       cat("Existing key preserved.")
 
+    } else {
+      stop("Unknown character. Call `congress_set_key()` to retry.",
+           call. = FALSE)
     }
 
   } else {
