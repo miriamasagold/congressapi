@@ -16,5 +16,7 @@ A character vector confirming API key
 Get and Set Congress API Key
 }
 \examples{
+\dontrun{
 congress_set_key("YOUR_API_KEY_HERE")
+}
 }

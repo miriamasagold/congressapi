@@ -9,7 +9,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' congress_set_key("YOUR_API_KEY_HERE")
+#' }
 congress_set_key <- function(key) {
 
   if (Sys.getenv("CONGRESS_API_KEY") != "") {
