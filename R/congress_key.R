@@ -54,7 +54,3 @@ congress_get_key <- function() {
   }
 
 }
-
-congress_get_key()
-
-

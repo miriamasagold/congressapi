@@ -22,10 +22,10 @@ appendArgs <- function(base_list, ...) {
 
   }
 
-  final_list <-
-    setNames(base_list, new_names)
 
-  return(final_list)
+  names(base_list) <- new_names
+
+  return(base_list)
 
 }
 

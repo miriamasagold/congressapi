@@ -57,7 +57,7 @@ congressParse <- function(resp) {
 print.congress_api <- function(x, ...) {
 
   cat("<Congress API: ", x$path, ">\n", sep = "")
-  str(x$content)
+  utils::str(x$content)
   invisible(x)
 
 }
