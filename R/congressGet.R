@@ -1,3 +1,5 @@
+
+# Internal: Constructs full url by pasting base API url to endpoint, like "bill/117"
 congress_make_url <- function(endpoint) {
 
   base_url <- "https://api.congress.gov/v3"
@@ -8,6 +10,7 @@ congress_make_url <- function(endpoint) {
 
 }
 
+# Internal: appends name dot arguments to base list of additional arguments, like api_key
 appendArgs <- function(base_list, ...) {
 
   args_to_add <- list(...)
@@ -29,10 +32,7 @@ appendArgs <- function(base_list, ...) {
 }
 
 
-#===============================================================================
-# Parse API response
-#===============================================================================
-
+# Internal: extracts base endpoint ("bill") from API call ("https://api.congress.gov/v3/bill?api_key=API_KEY&format=json")
 extract_endpoint <- function(url) {
 
   pattern <- "(?<=v3/)[[:alpha:]-]*(?=/?)"
@@ -47,6 +47,40 @@ extract_endpoint <- function(url) {
 
 }
 
+
+
+# Internal: validates response to API call and throws error if content is empty or errorful
+# based on https://github.com/hrecht/censusapi/blob/HEAD/R/getcensus_functions.R
+
+check_response <- function(resp) {
+
+  content <-
+    httr::content(resp, as="text",
+                  encoding = "UTF-8")
+
+  if (resp$status_code != 200) {
+
+    err_msg <-
+      trimws(
+        gsub("[\\{\\}\n\"]|(e|E)rror|:", "", content)
+      )
+
+    stop(
+      paste0(err_msg,"\nYour API call was: ",
+             resp$url),
+      call. = FALSE)
+
+  }
+
+  if (identical(content, "")) {
+    stop("No content was returned.\nYour API call was: ",
+         resp$url,
+         call. = FALSE)
+  }
+
+}
+
+# Internal: parses API response and returns an S3 object of class 'endpoint' (e.g., "member")
 congressParse <- function(resp) {
 
   content <- httr::content(resp,
@@ -83,7 +117,8 @@ congressParse <- function(resp) {
   return(out)
 }
 
-# S3 print method for congress_api class objects
+
+## Internal:  S3 print method for congress_api class objects
 print.congress_api <- function(x, ...) {
 
   cat("<Congress API: ", x$path, ">\n", sep = "")
@@ -92,56 +127,49 @@ print.congress_api <- function(x, ...) {
 
 }
 
-# based on https://github.com/hrecht/censusapi/blob/HEAD/R/getcensus_functions.R
-check_response <- function(resp) {
-
-  content <-
-    httr::content(resp, as="text",
-                  encoding = "UTF-8")
-
-  if (resp$status_code != 200) {
-
-    err_msg <-
-      trimws(
-        gsub("[\\{\\}\n\"]|(e|E)rror|:", "", content)
-      )
-
-    stop(
-      paste0(err_msg,"\nYour API call was: ",
-             resp$url),
-      call. = FALSE)
-
-  }
-
-  if (identical(content, "")) {
-    stop("No content was returned.\nYour API call was: ",
-         resp$url,
-         call. = FALSE)
-  }
 
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#' Retrieve data from official Congress API
+#'
+#' `congressGet` takes in a Congress API endpoint and returns data on bills,
+#' amendments, congressional records, and other content.
+#'
+#' @param endpoint Character string, complete endpoint path.
+#' @param key Character string, Congress API key. Defaults to congress_get_key()
+#' @param return.data Logical, whether to parse JSON returned by API call into tabular format and return data.frame object. Not all endpoints are supported (e.g., "member/{bioguideId}"). In this case, the call will return JSON and throw a non-fatal warning.
+#' @param ... Additional formatting options passed to the end of the API call (e.g., `sort = "desc"`). Arguments passed via dots must be named.
+#'
+#' @details 11 base endpoints may be specified: bill, amendments, summaries,
+#' congress, member, committee, committeeReport, congressional-record,
+#' house-communication, nomination, and treaty.
+#'
+#' Within each endpoint, multiple additional parameters may be specified to
+#' filter data based on, for example, congressional session or chamber ("hr" vs. "s").
+#' In addition, additional sorting and subsetting parameters may be passed through `...`,
+#' such as `sort = "desc"` or `fromDateTime = "2022-04-01T00:00:00Z"`.
+#' Pagination may be executed using `offset`. Amount of rows returned may be increased
+#' using `limit`.
+#'
+#' Visit [https://api.congress.gov/](https://api.congress.gov/) for more details.
+#'
+#' @return If return.data = TRUE, returns a data.frame object of 20 rows by default. Otherwise, a JSON structure is returned.
+#'
+#' @examples
+#' \dontrun{
+#' congressGet("bill")
+#' congressGet("congress/116")
+#' congressGet("member/L000174", return.data = FALSE)
+#' congressGet("committeeReport/116/hrpt/617/text")
+#' }
+#' @export
 
 congressGet <-
-  function(endpoint,
-           key          = congress_get_key(),
-           return.data  = TRUE,
-           ...
-  ) {
+  function(
+    endpoint,
+    key          = congress_get_key(),
+    return.data  = TRUE,
+    ...
+    ) {
 
     # Check for key in environment
     if(key == "") {

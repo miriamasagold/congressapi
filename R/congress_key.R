@@ -1,17 +1,16 @@
 
-
-
-#' Get and Set Congress API Key
+#' Set Congress API Key
 #'
-#' @param key Character string API key to be saved as environmental variable "CONGRESS_API_KEY". New keys may be generated at https://api.congress.gov/sign-up/
+#' @param key Character string API key to be saved as environmental variable "CONGRESS_API_KEY". New keys may be generated at [https://api.congress.gov/sign-up/](https://api.congress.gov/sign-up/).
 #'
-#' @return A character vector confirming API key
-#' @export
+#' @return A character vector of the currently set API key.
 #'
 #' @examples
 #' \dontrun{
 #' congress_set_key("YOUR_API_KEY_HERE")
 #' }
+
+#' @export
 congress_set_key <- function(key) {
 
   if (Sys.getenv("CONGRESS_API_KEY") != "") {
@@ -44,10 +43,19 @@ congress_set_key <- function(key) {
 
 }
 
-#===============================================================================
-# retrieve key function
-#===============================================================================
 
+
+#' Get Congress API Key
+#'
+#' Retrieves environment variable set by `congress_set_key()`
+#'
+#' @return If API key has already been set, returns a character string of the key. Otherwise, warns that no API key has been set and provides a link to generate a new key.
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' congress_get_key()
+#' }
 congress_get_key <- function() {
 
   env_key <- Sys.getenv("CONGRESS_API_KEY")
