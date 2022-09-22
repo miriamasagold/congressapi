@@ -50,11 +50,15 @@ All the user needs to do is specify the endpoint, along with any additional spec
 
 ```{r congressGet}
 library(congressapi)
+library(dplyr)
+library(magrittr)
 
 # congress_set_key()
 
 # Retrieves all house bills from the 117th Congress
-bill <- congressGet("bill/117/hr")
+bill <- 
+  congressGet("bill/117/hr") %>%
+  dplyr::tibble()
 
 head(bill)
 
