@@ -6,6 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+<img src='man/figures/README-hexsticker.png' align="right" height="138.5" />
+
 The goal of congressapi is to facilitate seamless data retrieval from
 the [official Congress API](https://api.congress.gov/) by providing a
 single wrapper function, `congressGet()`.
