@@ -4,8 +4,9 @@
 # congressapi
 
 <!-- badges: start -->
-<!-- badges: end -->
 
+[![R-CMD-check](https://github.com/AMGold99/congressapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AMGold99/congressapi/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
 <img src='man/figures/README-hexsticker.svg' align="right" height="138.5" />
 
 The goal of congressapi is to facilitate seamless data retrieval from
@@ -42,40 +43,26 @@ All the user needs to do is specify the endpoint, along with any
 additional specifications desired:
 
 ``` r
-library(congressapi)
-library(dplyr)
-#> Warning: package 'dplyr' was built under R version 4.1.3
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
-library(magrittr)
-#> Warning: package 'magrittr' was built under R version 4.1.3
-
-# congress_set_key()
 
 # Retrieves all house bills from the 117th Congress
 bill <- 
-  congressGet("bill/117/hr") %>%
-  dplyr::tibble()
+    dplyr::tibble(
+      congressapi::congressGet("bill/117/hr")
+      )
 
 head(bill)
 #> # A tibble: 6 x 12
 #>   congress number originChamber originChamberCode title         type  updateDate
 #>      <int> <chr>  <chr>         <chr>             <chr>         <chr> <chr>     
-#> 1      117 92     House         H                 "To designat~ HR    2022-09-21
-#> 2      117 91     House         H                 "To designat~ HR    2022-09-21
-#> 3      117 5809   House         H                 "To designat~ HR    2022-09-21
-#> 4      117 5577   House         H                 "To designat~ HR    2022-09-21
-#> 5      117 3539   House         H                 "To designat~ HR    2022-09-21
-#> 6      117 3508   House         H                 "To designat~ HR    2022-09-21
+#> 1      117 5768   House         H                 VICTIM Act o~ HR    2022-09-23
+#> 2      117 4118   House         H                 Break the Cy~ HR    2022-09-23
+#> 3      117 7846   House         H                 Veterans’ Co~ HR    2022-09-23
+#> 4      117 8542   House         H                 Mental Healt~ HR    2022-09-23
+#> 5      117 6448   House         H                 Invest to Pr~ HR    2022-09-23
+#> 6      117 6833   House         H                 Affordable I~ HR    2022-09-23
 #> # ... with 5 more variables: updateDateIncludingText <chr>, url <chr>,
-#> #   latestAction_actionDate <chr>, latestAction_text <chr>,
-#> #   latestAction_actionTime <chr>
+#> #   latestAction_actionDate <chr>, latestAction_actionTime <chr>,
+#> #   latestAction_text <chr>
 ```
 
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
