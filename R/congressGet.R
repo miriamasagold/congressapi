@@ -78,6 +78,9 @@ check_response <- function(resp) {
          call. = FALSE)
   }
 
+
+  return(resp)
+
 }
 
 # Internal: parses API response and returns an S3 object of class 'endpoint' (e.g., "member")
@@ -196,7 +199,7 @@ congressGet <-
 
 
     # parse response and create S3 class based on endpoint type
-    parsed <- congressParse(resp)
+    parsed <- congressParse(checked_resp)
 
     if (return.data) {
 
