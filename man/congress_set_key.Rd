@@ -2,18 +2,28 @@
 % Please edit documentation in R/congress_key.R
 \name{congress_set_key}
 \alias{congress_set_key}
-\title{Set Congress API Key}
+\alias{congress_get_key}
+\title{Get and Set Congress API Key}
 \usage{
 congress_set_key(key)
+
+congress_get_key()
 }
 \arguments{
-\item{key}{Character string API key to be saved as environmental variable "CONGRESS_API_KEY". New keys may be generated at \url{https://api.congress.gov/sign-up/}.}
+\item{key}{Character string API key to be saved as environmental variable "CONGRESS_API_KEY".}
 }
 \value{
 A character vector of the currently set API key.
 }
 \description{
-Set Congress API Key
+\code{congress_set_key()} takes a character string API key and saves it as the
+environment variable "CONGRESS_API_KEY". If a key has already been set in the
+session, \code{congress_set_key()} will warn and prompt the user to choose whether
+to overwrite. New keys may be generated at
+\url{https://api.congress.gov/sign-up/}.
+}
+\details{
+\code{congress_get_key()} retrieves the environment variable.
 }
 \examples{
 \dontrun{

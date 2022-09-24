@@ -11,7 +11,7 @@ congressGet(endpoint, key = congress_get_key(), return.data = TRUE, ...)
 
 \item{key}{Character string, Congress API key. Defaults to congress_get_key()}
 
-\item{return.data}{Logical, whether to parse JSON returned by API call into tabular format and return data.frame object. Not all endpoints are supported (e.g., "member/{bioguideId}"). In this case, the call will return JSON and throw a non-fatal warning.}
+\item{return.data}{Return content as a data frame? Not all endpoints are supported (e.g., "member/{bioguideId}"). In this case, the call will return JSON and throw a non-fatal warning.}
 
 \item{...}{Additional formatting options passed to the end of the API call (e.g., \code{sort = "desc"}). Arguments passed via dots must be named.}
 }

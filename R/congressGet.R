@@ -134,12 +134,12 @@ print.congress_api <- function(x, ...) {
 
 #' Retrieve data from official Congress API
 #'
-#' `congressGet` takes in a Congress API endpoint and returns data on bills,
+#' `congressGet` takes in a Congress API endpoint path and returns data on bills,
 #' amendments, congressional records, and other content.
 #'
 #' @param endpoint Character string, complete endpoint path.
 #' @param key Character string, Congress API key. Defaults to congress_get_key()
-#' @param return.data Logical, whether to parse JSON returned by API call into tabular format and return data.frame object. Not all endpoints are supported (e.g., "member/{bioguideId}"). In this case, the call will return JSON and throw a non-fatal warning.
+#' @param return.data Return content as a data frame? Not all endpoints are supported (e.g., "member/{bioguideId}"). In this case, the call will return JSON and throw a non-fatal warning.
 #' @param ... Additional formatting options passed to the end of the API call (e.g., `sort = "desc"`). Arguments passed via dots must be named.
 #'
 #' @details 11 base endpoints may be specified: bill, amendments, summaries,
