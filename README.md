@@ -45,7 +45,7 @@ All the user needs to do is specify the endpoint, along with any
 additional specifications desired:
 
 ``` r
-
+library(congressapi)
 # Retrieves all house bills from the 117th Congress
 bill <- 
     dplyr::tibble(
@@ -56,22 +56,13 @@ head(bill)
 #> # A tibble: 6 x 12
 #>   congress number originChamber originChamberCode title         type  updateDate
 #>      <int> <chr>  <chr>         <chr>             <chr>         <chr> <chr>     
-#> 1      117 5768   House         H                 VICTIM Act o~ HR    2022-09-23
-#> 2      117 4118   House         H                 Break the Cy~ HR    2022-09-23
-#> 3      117 7846   House         H                 Veterans’ Co~ HR    2022-09-23
-#> 4      117 8542   House         H                 Mental Healt~ HR    2022-09-23
-#> 5      117 6448   House         H                 Invest to Pr~ HR    2022-09-23
-#> 6      117 6833   House         H                 Affordable I~ HR    2022-09-23
+#> 1      117 8966   House         H                 To clarify r~ HR    2022-09-24
+#> 2      117 8965   House         H                 To amend the~ HR    2022-09-24
+#> 3      117 8949   House         H                 To amend the~ HR    2022-09-24
+#> 4      117 5768   House         H                 VICTIM Act o~ HR    2022-09-24
+#> 5      117 4118   House         H                 Break the Cy~ HR    2022-09-24
+#> 6      117 7846   House         H                 Veterans’ Co~ HR    2022-09-24
 #> # ... with 5 more variables: updateDateIncludingText <chr>, url <chr>,
-#> #   latestAction_actionDate <chr>, latestAction_actionTime <chr>,
-#> #   latestAction_text <chr>
+#> #   latestAction_actionDate <chr>, latestAction_text <chr>,
+#> #   latestAction_actionTime <chr>
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
