@@ -12,8 +12,102 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
 ```
 
-```{r setup}
+# Set Up
+
+The package **congressapi** allows you to retrieve data from eleven different [Congress API](https://api.congress.gov/) endpoints, returning (most) as data frames by default.
+
+To set up your session, request an API key [here](https://api.congress.gov/sign-up/). Then use `congress_set_key()` to save that key to your R session.
+
+```{r setup-key}
 library(congressapi)
+
+api_key <- "YOUR_API_KEY_HERE"
+
+congress_set_key(api_key)
+
 ```
+
+```{r secret-set-up, include = FALSE}
+library(dplyr)
+library(utils)
+library(purrr)
+congress_set_key("Q4sx4JhmbiXxePlys49UyztTbiUDkaRkERT3sPKW")
+```
+
+# Retrieving Data
+
+You may request data from eleven unique endpoints:
+
+* bill
+* amendment
+* summaries
+* congress
+* member
+* committee
+* committeeReport
+* congressional-record
+* house-communication
+* nomination
+* treaty
+
+Here is a basic call to `congressGet()`.
+
+```{r}
+member <- congressGet("member")
+member_tbl <- dplyr::tibble(member)
+
+head(member_tbl)
+```
+
+## Limits and Pagination
+
+By default, the API returns 20 observations per request. To adjust the amount of data returned, you may pass the `limit` argument to `congressGet()`:
+
+```{r}
+rows <- 50
+
+bill <- congressGet("bill", limit = rows)
+
+nrow(bill) == rows
+```
+To paginate results, use `offset`. Because each page returns 20 observations, an offset of 20 will return the second page, 40 will return the third, and so on. Combining this feature with a functional paradigm provides a pleasant method of collating multiple pages into a single data frame.
+
+```{r}
+# Should return 60-row data frame
+offsets <- c(20, 40, 60)
+
+three_pages <-
+  purrr::map_dfr(
+    .x = offsets,
+    .f = ~ congressGet("bill",
+                       offset = .x)
+  )
+
+nrow(three_pages)
+
+```
+Note that, because additional arguments like offset and limit are passed via dots, they must be named for the server to understand what their values refer to.
+
+## Additional Parameters
+
+In addition to offset and limit, several additional parameters may be passed to the GET request via `congressGet()`. These include `sort` (either `"asc"` or `"desc"`), `fromDateTime`, and `toDateTime` (full timestamps required). 
+
+Note that many endpoints, like bill, allow you to explicitly specify a congressional session in the main endpoint path (e.g., `"bill/117"`). In some cases, this may be preferable to timestamp customization.
+
+## Endpoint Paths
+
+Within each endpoint, a variety of more specialized paths may be specified. For instance, to retrieve detailed information on a specific member, you can add a [BioGuide ID](https://www.congress.gov/help/field-values/member-bioguide-ids). Below, note the warning message. Some endpoints cannot be coerced into dataframes and will instead return the content of the API request.
+
+```{r}
+single_member <- congressGet("member/S000033")
+
+utils::str(single_member)
+```
+
+To find a complete reference of all valid endpoint paths, visit the [Congress API webpage](https://api.congress.gov/)
+
+
+
