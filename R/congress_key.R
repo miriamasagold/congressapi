@@ -24,7 +24,7 @@ congress_set_key <- function(key, warn = FALSE) {
 
   if (Sys.getenv("CONGRESS_API_KEY") != "" & warn == TRUE) {
 
-    cat("Congress API already set. Do you wish to overwrite the existing key?")
+    cat("Congress API key already set. Do you wish to overwrite the existing key?")
 
     resp <- readline("[Y/n]: ")
 
