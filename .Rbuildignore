@@ -4,3 +4,6 @@
 ^README\.Rmd$
 ^\.github$
 ^man/figures/README-hexsticker\.svg$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
