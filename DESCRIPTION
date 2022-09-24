@@ -3,7 +3,7 @@ Title: R Client for Official Congress API
 Version: 0.0.0.9000
 Authors@R: 
     person("Miriam", "Gold", , "goldasa99@gmail.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Provides consistent access to Congressional data across 11 endpoints.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

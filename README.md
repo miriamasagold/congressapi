@@ -11,9 +11,9 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 <img src='man/figures/README-hexsticker.svg' align="right" height="138.5" />
 
-The goal of congressapi is to facilitate seamless data retrieval from
-the [official Congress API](https://api.congress.gov/) by providing a
-single wrapper function, `congressGet()`.
+**congressapi** provides an extremely lightweight wrapper, facilitating
+seamless data retrieval from the [official Congress
+API](https://api.congress.gov/) via a single function, `congressGet()`.
 
 ## Installation
 
@@ -22,7 +22,7 @@ You can install the development version of **congressapi** from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("AMGold99/congressapi")
+devtools::install_github("miriamasagold/congressapi")
 ```
 
 ## Retrieving data
@@ -66,3 +66,12 @@ head(bill)
 #> #   latestAction_actionDate <chr>, latestAction_text <chr>,
 #> #   latestAction_actionTime <chr>
 ```
+
+Visit <https://miriamasagold.github.io/congressapi/> to read full
+package documentation. If you find a bug or would like to see a new
+functionality, please submit an
+[issue](https://github.com/miriamasagold/congressapi/issues).
+
+# Note
+
+This project is not endorsed or sponsered by the United States Congress.
