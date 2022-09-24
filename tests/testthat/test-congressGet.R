@@ -78,10 +78,13 @@ test_that("extract_endpoint - to _ replacement works, n-items", {
 # congressGet
 #==========================================
 
+test_that("", {
 
+  skip_if_key_missing()
 
-
-
+  expect_s3_class(congressGet("bill"),
+                  "data.frame")
+})
 
 
 
