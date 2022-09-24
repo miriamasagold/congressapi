@@ -19,7 +19,7 @@ congressGet(endpoint, key = congress_get_key(), return.data = TRUE, ...)
 If return.data = TRUE, returns a data.frame object of 20 rows by default. Otherwise, a JSON structure is returned.
 }
 \description{
-\code{congressGet} takes in a Congress API endpoint and returns data on bills,
+\code{congressGet} takes in a Congress API endpoint path and returns data on bills,
 amendments, congressional records, and other content.
 }
 \details{

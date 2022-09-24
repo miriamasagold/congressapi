@@ -5,12 +5,15 @@
 \alias{congress_get_key}
 \title{Get and Set Congress API Key}
 \usage{
-congress_set_key(key)
+congress_set_key(key, warn = FALSE)
 
 congress_get_key()
 }
 \arguments{
 \item{key}{Character string API key to be saved as environmental variable "CONGRESS_API_KEY".}
+
+\item{warn}{Warn user when attempting to overwrite an existing key? If set
+to TRUE, prompts user to decide whether to overwrite.}
 }
 \value{
 A character vector of the currently set API key.

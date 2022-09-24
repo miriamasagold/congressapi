@@ -1,3 +1,4 @@
+
 #==========================================
 # congress_make_url
 #==========================================
@@ -78,71 +79,6 @@ test_that("extract_endpoint - to _ replacement works, n-items", {
 #==========================================
 
 
-test_that("number of colums in bill", {
-  expect_length(names(congressGet("bill")),
-                12)
-})
-
-test_that("number of colums in amendments", {
-  expect_length(names(congressGet("amendment",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                10)
-})
-
-test_that("number of colums in summaries", {
-
-  expect_length(names(congressGet("summaries",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                16)
-})
-
-test_that("number of colums in congress", {
-  expect_length(names(congressGet("congress",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                8)
-})
-
-test_that("number of colums in member", {
-  expect_length(names(congressGet("member",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                12)
-})
-
-test_that("number of colums in committee", {
-  expect_length(names(congressGet("committee",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                11)
-})
-
-test_that("number of colums in committeeReport", {
-  expect_length(names(congressGet("committeeReport",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                3)
-})
-
-#test_that("number of colums in congressional-record", {
-#  expect_length(names(congressGet("congressional-record",
-#                                 key = Sys.getenv("CONGRESS_API_KEY"))),
-#                12)
-#})
-
-test_that("number of colums in house-communication", {
-  expect_length(names(congressGet("house-communication",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                6)
-})
-
-test_that("number of colums in nomination", {
-  expect_length(names(congressGet("nomination",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                13)
-})
-
-test_that("number of colums in treaty", {
-  expect_length(names(congressGet("treaty",
-                                  key = Sys.getenv("CONGRESS_API_KEY"))),
-                10)
-})
 
 
 
