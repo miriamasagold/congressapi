@@ -10,7 +10,8 @@
 #' `congress_get_key()` retrieves the environment variable.
 #'
 #' @param key Character string API key to be saved as environmental variable "CONGRESS_API_KEY".
-#'
+#' @param warn Warn user when attempting to overwrite an existing key? If set
+#' to TRUE, prompts user to decide whether to overwrite.
 #' @return A character vector of the currently set API key.
 #'
 #' @examples
@@ -19,11 +20,11 @@
 #' }
 
 #' @export
-congress_set_key <- function(key) {
+congress_set_key <- function(key, warn = FALSE) {
 
-  if (Sys.getenv("CONGRESS_API_KEY") != "") {
+  if (Sys.getenv("CONGRESS_API_KEY") != "" & warn == TRUE) {
 
-    cat("Congress API already set. Do you wish to overwrite the existing key?")
+    cat("Congress API key already set. Do you wish to overwrite the existing key?")
 
     resp <- readline("[Y/n]: ")
 
@@ -60,13 +61,13 @@ congress_get_key <- function() {
 
   if (env_key == "") {
 
-    stop("No API key discovered. A key may be requested at https://api.congress.gov/sign-up",
-         call. = FALSE)
-
-  } else {
-
-    env_key
-
+    on.exit(
+      message(
+        "No API key discovered. A key may be requested at https://api.congress.gov/sign-up"
+        )
+    )
   }
 
-}
+    return(env_key)
+
+  }

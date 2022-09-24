@@ -1,3 +1,4 @@
+
 #==========================================
 # congress_make_url
 #==========================================
@@ -77,64 +78,13 @@ test_that("extract_endpoint - to _ replacement works, n-items", {
 # congressGet
 #==========================================
 
+test_that("", {
 
-test_that("number of colums in bill", {
-  expect_length(names(congressGet("bill")),
-                12)
+  skip_if_key_missing()
+
+  expect_s3_class(congressGet("bill"),
+                  "data.frame")
 })
-
-test_that("number of colums in amendments", {
-  expect_length(names(congressGet("amendment")),
-                10)
-})
-
-test_that("number of colums in summaries", {
-  expect_length(names(congressGet("summaries")),
-                16)
-})
-
-test_that("number of colums in congress", {
-  expect_length(names(congressGet("congress")),
-                8)
-})
-
-test_that("number of colums in member", {
-  expect_length(names(congressGet("member")),
-                12)
-})
-
-test_that("number of colums in committee", {
-  expect_length(names(congressGet("committee")),
-                11)
-})
-
-test_that("number of colums in committeeReport", {
-  expect_length(names(congressGet("committeeReport")),
-                3)
-})
-
-#test_that("number of colums in congressional-record", {
-#  expect_length(names(congressGet("congressional-record")),
-#                12)
-#})
-
-test_that("number of colums in house-communication", {
-  expect_length(names(congressGet("house-communication")),
-                6)
-})
-
-test_that("number of colums in nomination", {
-  expect_length(names(congressGet("nomination")),
-                13)
-})
-
-test_that("number of colums in treaty", {
-  expect_length(names(congressGet("treaty")),
-                10)
-})
-
-
-
 
 
 
