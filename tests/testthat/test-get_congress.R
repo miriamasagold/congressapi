@@ -21,16 +21,16 @@ test_that("endpoint with hyphen make_url works", {
 
 
 #==========================================
-# appendArgs
+# append_args
 #==========================================
 
-test_that("appendArgs takes one key-value pair", {
-  expect_equal(appendArgs(list(a = 1, b = 2), c = 3),
+test_that("append_args takes one key-value pair", {
+  expect_equal(append_args(list(a = 1, b = 2), c = 3),
                list(a = 1, b = 2, c= 3))
 })
 
-test_that("appendArgs takes multiple key-value pair", {
-  expect_equal(appendArgs(list(a = 1, b = 2),
+test_that("append_args takes multiple key-value pair", {
+  expect_equal(append_args(list(a = 1, b = 2),
                           c = 3, d = 4, e = 5),
                list(a = 1, b = 2, c= 3,
                     d = 4, e = 5))
@@ -75,68 +75,108 @@ test_that("extract_endpoint - to _ replacement works, n-items", {
 
 
 #==========================================
-# congressGet
+# get_congress
 #==========================================
 
-test_that("", {
+test_that("bill endpoint returns data.frame", {
 
+  skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(congressGet("bill"),
+  expect_s3_class(get_congress("bill"),
                   "data.frame")
 })
 
-test_that("", {
+test_that("amendment endpoint returns data.frame", {
 
+  skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(congressGet("amendment"),
+  expect_s3_class(get_congress("amendment"),
                   "data.frame")
 })
 
-test_that("", {
+test_that("summaries endpoint returns data.frame", {
 
+  skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(congressGet("bill"),
+  expect_s3_class(get_congress("summaries"),
                   "data.frame")
 })
 
-test_that("", {
+test_that("congress endpoint returns data.frame", {
 
+  skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(congressGet("bill"),
+  expect_s3_class(get_congress("congress"),
                   "data.frame")
 })
 
-test_that("", {
+test_that("member endpoint returns data.frame", {
 
+  skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(congressGet("bill"),
+  expect_s3_class(get_congress("member"),
                   "data.frame")
 })
 
-test_that("", {
+test_that("committee endpoint returns data.frame", {
 
+  skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(congressGet("bill"),
+  expect_s3_class(get_congress("committee"),
                   "data.frame")
 })
 
-test_that("", {
+test_that("committeeReport endpoint returns data.frame", {
 
+  skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(congressGet("bill"),
+  expect_s3_class(get_congress("committeeReport"),
+                  "data.frame")
+})
+
+test_that("congressional-record endpoint returns data.frame", {
+
+  skip_on_cran()
+  skip_if_key_missing()
+
+  expect_s3_class(get_congress("congressional-record"),
+                  "data.frame")
+})
+
+test_that("house-communication endpoint returns data.frame", {
+
+  skip_on_cran()
+  skip_if_key_missing()
+
+  expect_s3_class(get_congress("house-communication"),
+                  "data.frame")
+})
+
+test_that("nomination endpoint returns data.frame", {
+
+  skip_on_cran()
+  skip_if_key_missing()
+
+  expect_s3_class(get_congress("nomination"),
                   "data.frame")
 })
 
 
+test_that("treaty endpoint returns data.frame", {
 
+  skip_on_cran()
+  skip_if_key_missing()
 
+  expect_s3_class(get_congress("treaty"),
+                  "data.frame")
+})
 
 
 

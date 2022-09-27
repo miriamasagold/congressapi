@@ -2,7 +2,7 @@
 
 # Helper functions
 
-renameNested <- function(.data, col) {
+rename_nested <- function(.data, col) {
 
   data_no_col <-
     .data[, !names(.data) %in% col]
@@ -22,7 +22,7 @@ renameNested <- function(.data, col) {
 
 }
 
-replaceEmpty <- function(x) {
+replace_empty <- function(x) {
 
   x[which(x == "")] <- NA
 
@@ -32,15 +32,15 @@ replaceEmpty <- function(x) {
 
 # Extracts and cleans dataframes from each endpoint
 
-congressData <- function(parsed) {
+congress_data <- function(parsed) {
 
-  UseMethod("congressData")
+  UseMethod("congress_data")
 
 }
 
 # Methods for each endpoint's S3 class
 
-congressData.bill <- function(parsed) {
+congress_data.bill <- function(parsed) {
 
   bill_df <-
     parsed[['content']][['bills']]
@@ -54,7 +54,7 @@ congressData.bill <- function(parsed) {
   } else {
 
     out <-
-      renameNested(
+      rename_nested(
         .data = bill_df,
         col = "latestAction"
         )
@@ -64,7 +64,7 @@ congressData.bill <- function(parsed) {
   }
 
 }
-congressData.amendment <- function(parsed) {
+congress_data.amendment <- function(parsed) {
 
   amendment_df <-
     parsed[['content']][['amendments']]
@@ -80,7 +80,7 @@ congressData.amendment <- function(parsed) {
   }
 
   out <-
-    renameNested(
+    rename_nested(
       .data = amendment_df,
       col = "latestAction"
       )
@@ -88,7 +88,7 @@ congressData.amendment <- function(parsed) {
   return(out)
 
 }
-congressData.summaries <- function(parsed) {
+congress_data.summaries <- function(parsed) {
 
   summaries_df <-
     parsed[['content']][['summaries']]
@@ -102,7 +102,7 @@ congressData.summaries <- function(parsed) {
   } else {
 
     out <-
-      renameNested(
+      rename_nested(
         .data = summaries_df,
         col = "bill"
         )
@@ -112,7 +112,7 @@ congressData.summaries <- function(parsed) {
   }
 
 }
-congressData.congress <- function(parsed) {
+congress_data.congress <- function(parsed) {
 
   congress_df <-
     parsed[['content']][['congresses']]
@@ -153,7 +153,7 @@ congressData.congress <- function(parsed) {
 
   }
   }
-congressData.member <- function(parsed) {
+congress_data.member <- function(parsed) {
 
 
   member_df <- parsed[['content']][['members']]
@@ -211,7 +211,7 @@ congressData.member <- function(parsed) {
   }
 
 }
-congressData.committee <- function(parsed) {
+congress_data.committee <- function(parsed) {
 
   # Extract dataframe from content
   cmte_df <- parsed[['content']][['committees']]
@@ -284,7 +284,7 @@ congressData.committee <- function(parsed) {
   }
 
 }
-congressData.committeeReport <- function(parsed) {
+congress_data.committeeReport <- function(parsed) {
 
   cmteRep_df <- parsed[['content']][['reports']]
 
@@ -300,7 +300,7 @@ congressData.committeeReport <- function(parsed) {
 
   }
 }
-congressData.congressional_record <- function(parsed) {
+congress_data.congressional_record <- function(parsed) {
 
   cr_df <- parsed[['content']][['Results']][['Issues']]
 
@@ -371,7 +371,7 @@ congressData.congressional_record <- function(parsed) {
   }
 
 }
-congressData.house_communication <- function(parsed) {
+congress_data.house_communication <- function(parsed) {
 
   hs_comm_df <- parsed[['content']][['houseCommunications']]
 
@@ -384,7 +384,7 @@ congressData.house_communication <- function(parsed) {
   } else {
 
     out <-
-      renameNested(
+      rename_nested(
         .data = hs_comm_df,
         col = "communicationType"
         )
@@ -393,7 +393,7 @@ congressData.house_communication <- function(parsed) {
 
   }
   }
-congressData.nomination <- function(parsed) {
+congress_data.nomination <- function(parsed) {
 
   nom_df <-
     parsed[['content']][['nominations']]
@@ -407,7 +407,7 @@ congressData.nomination <- function(parsed) {
   } else {
 
     nom_nomType <-
-      renameNested(
+      rename_nested(
         nom_df,
         "nominationType"
       )
@@ -423,7 +423,7 @@ congressData.nomination <- function(parsed) {
       latestAction
 
     out <-
-      renameNested(
+      rename_nested(
         nom_nomType,
         "latestAction"
       )
@@ -433,7 +433,7 @@ congressData.nomination <- function(parsed) {
   }
 
 }
-congressData.treaty <- function(parsed) {
+congress_data.treaty <- function(parsed) {
 
   treaty_df <-
     parsed[['content']][['treaties']]
@@ -464,7 +464,7 @@ congressData.treaty <- function(parsed) {
      as.data.frame(
       lapply(
         treaty_df,
-        replaceEmpty
+        replace_empty
       )
     )
 

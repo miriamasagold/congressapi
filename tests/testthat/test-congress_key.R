@@ -1,10 +1,11 @@
 #==========================================
-# api key tests
+# congress_get_key() tests
 #==========================================
 
 test_that("congress_set_key() works", {
 
-  on.exit(congress_set_key(""),
+  old_key <- congress_get_key()
+  on.exit(congress_set_key(old_key),
           add = TRUE,
           after = FALSE)
 
@@ -14,14 +15,15 @@ test_that("congress_set_key() works", {
 
 })
 
-test_that("congressGet() throws error if no key has been set", {
+test_that("get_congress() throws error if no key has been set", {
 
-  on.exit(congress_set_key(""),
+  old_key <- congress_get_key()
+  on.exit(congress_set_key(old_key),
           add = TRUE,
           after = FALSE)
 
   congress_set_key("")
 
-  expect_error(congressGet(endpoint = "bill"))
+  expect_error(get_congress(endpoint = "bill"))
 
 })

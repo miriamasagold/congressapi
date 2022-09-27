@@ -11,7 +11,7 @@ congress_make_url <- function(endpoint) {
 }
 
 # Internal: appends name dot arguments to base list of additional arguments, like api_key
-appendArgs <- function(base_list, ...) {
+append_args <- function(base_list, ...) {
 
   args_to_add <- list(...)
 
@@ -84,7 +84,7 @@ check_response <- function(resp) {
 }
 
 # Internal: parses API response and returns an S3 object of class 'endpoint' (e.g., "member")
-congressParse <- function(resp) {
+congress_parse <- function(resp) {
 
   content <- httr::content(resp,
                            as = "text",
@@ -134,7 +134,7 @@ print.congress_api <- function(x, ...) {
 
 #' Retrieve data from official Congress API
 #'
-#' `congressGet` takes in a Congress API endpoint path and returns data on bills,
+#' `get_congress` takes in a Congress API endpoint path and returns data on bills,
 #' amendments, congressional records, and other content.
 #'
 #' @param endpoint Character string, complete endpoint path.
@@ -159,14 +159,14 @@ print.congress_api <- function(x, ...) {
 #'
 #' @examples
 #' \dontrun{
-#' congressGet("bill")
-#' congressGet("congress/116")
-#' congressGet("member/L000174", return.data = FALSE)
-#' congressGet("committeeReport/116/hrpt/617/text")
+#' get_congress("bill")
+#' get_congress("congress/116")
+#' get_congress("member/L000174", return.data = FALSE)
+#' get_congress("committeeReport/116/hrpt/617/text")
 #' }
 #' @export
 
-congressGet <-
+get_congress <-
   function(
     endpoint,
     key          = congress_get_key(),
@@ -184,7 +184,7 @@ congressGet <-
 
     # construct list of additional arguments to pass after the endpoint
     query_list <-
-      appendArgs(base_list = list(api_key = key,
+      append_args(base_list = list(api_key = key,
                                   format = "json"),
                  args_to_add = ...)
 
@@ -199,12 +199,12 @@ congressGet <-
 
 
     # parse response and create S3 class based on endpoint type
-    parsed <- congressParse(checked_resp)
+    parsed <- congress_parse(checked_resp)
 
     if (return.data) {
 
       # Extract dataframe
-      df <- congressData(parsed)
+      df <- congress_data(parsed)
 
       return(df)
 

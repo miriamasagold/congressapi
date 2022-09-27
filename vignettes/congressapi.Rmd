@@ -53,10 +53,10 @@ You may request data from eleven unique endpoints:
 * nomination
 * treaty
 
-Here is a basic call to `congressGet()`.
+Here is a basic call to `get_congress()`.
 
 ```{r}
-member <- congressGet("member")
+member <- get_congress("member")
 member_tbl <- dplyr::tibble(member)
 
 head(member_tbl)
@@ -64,12 +64,12 @@ head(member_tbl)
 
 ## Limits and Pagination
 
-By default, the API returns 20 observations per request. To adjust the amount of data returned, you may pass the `limit` argument to `congressGet()`:
+By default, the API returns 20 observations per request. To adjust the amount of data returned, you may pass the `limit` argument to `get_congress()`:
 
 ```{r}
 rows <- 50
 
-bill <- congressGet("bill", limit = rows)
+bill <- get_congress("bill", limit = rows)
 
 nrow(bill) == rows
 ```
@@ -82,7 +82,7 @@ offsets <- c(20, 40, 60)
 three_pages <-
   purrr::map_dfr(
     .x = offsets,
-    .f = ~ congressGet("bill",
+    .f = ~ get_congress("bill",
                        offset = .x)
   )
 
@@ -93,7 +93,7 @@ Note that, because additional arguments like offset and limit are passed via dot
 
 ## Additional Parameters
 
-In addition to offset and limit, several additional parameters may be passed to the GET request via `congressGet()`. These include `sort` (either `"asc"` or `"desc"`), `fromDateTime`, and `toDateTime` (full timestamps required). 
+In addition to offset and limit, several additional parameters may be passed to the GET request via `get_congress()`. These include `sort` (either `"asc"` or `"desc"`), `fromDateTime`, and `toDateTime` (full timestamps required). 
 
 Note that many endpoints, like bill, allow you to explicitly specify a congressional session in the main endpoint path (e.g., `"bill/117"`). In some cases, this may be preferable to timestamp customization.
 
@@ -102,7 +102,7 @@ Note that many endpoints, like bill, allow you to explicitly specify a congressi
 Within each endpoint, a variety of more specialized paths may be specified. For instance, to retrieve detailed information on a specific member, you can add a [BioGuide ID](https://www.congress.gov/help/field-values/member-bioguide-ids). Below, note the warning message. Some endpoints cannot be coerced into dataframes and will instead return the content of the API request.
 
 ```{r}
-single_member <- congressGet("member/S000033")
+single_member <- get_congress("member/S000033")
 
 utils::str(single_member)
 ```
