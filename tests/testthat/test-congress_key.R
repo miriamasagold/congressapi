@@ -9,7 +9,7 @@ test_that("congress_set_key() works", {
           add = TRUE,
           after = FALSE)
 
-  congress_set_key("new_key")
+  invisible(congress_set_key("new_key"))
 
   expect_identical(congress_get_key(), "new_key")
 
@@ -22,7 +22,7 @@ test_that("get_congress() throws error if no key has been set", {
           add = TRUE,
           after = FALSE)
 
-  congress_set_key("")
+  invisible(congress_set_key(""))
 
   expect_error(get_congress(endpoint = "bill"))
 

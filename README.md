@@ -13,7 +13,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 **congressapi** provides an extremely lightweight wrapper, facilitating
 seamless data retrieval from the [official Congress
-API](https://api.congress.gov/) via a single function, `congressGet()`.
+API](https://api.congress.gov/) via a single function, `get_congress()`.
 
 ## Installation
 
@@ -49,19 +49,19 @@ library(congressapi)
 # Retrieves all house bills from the 117th Congress
 bill <- 
     dplyr::tibble(
-      congressapi::congressGet("bill/117/hr")
+      congressapi::get_congress("bill/117/hr")
       )
 
 head(bill)
 #> # A tibble: 6 x 12
 #>   congress number originChamber originChamberCode title         type  updateDate
 #>      <int> <chr>  <chr>         <chr>             <chr>         <chr> <chr>     
-#> 1      117 8966   House         H                 To clarify r~ HR    2022-09-24
-#> 2      117 8965   House         H                 To amend the~ HR    2022-09-24
-#> 3      117 8949   House         H                 To amend the~ HR    2022-09-24
-#> 4      117 5768   House         H                 VICTIM Act o~ HR    2022-09-24
-#> 5      117 4118   House         H                 Break the Cy~ HR    2022-09-24
-#> 6      117 7846   House         H                 Veterans’ Co~ HR    2022-09-24
+#> 1      117 3460   House         H                 State Antitr~ HR    2022-09-27
+#> 2      117 3843   House         H                 Merger Filin~ HR    2022-09-27
+#> 3      117 2250   House         H                 Department o~ HR    2022-09-27
+#> 4      117 8983   House         H                 To rescind c~ HR    2022-09-27
+#> 5      117 8987   House         H                 Fairness for~ HR    2022-09-27
+#> 6      117 8984   House         H                 To amend the~ HR    2022-09-27
 #> # ... with 5 more variables: updateDateIncludingText <chr>, url <chr>,
 #> #   latestAction_actionDate <chr>, latestAction_text <chr>,
 #> #   latestAction_actionTime <chr>

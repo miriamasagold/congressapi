@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 <img src='man/figures/README-hexsticker.svg' align="right" height="138.5" />
 
-**congressapi** provides an extremely lightweight wrapper, facilitating seamless data retrieval from the [official Congress API](https://api.congress.gov/) via a single function, `congressGet()`.
+**congressapi** provides an extremely lightweight wrapper, facilitating seamless data retrieval from the [official Congress API](https://api.congress.gov/) via a single function, `get_congress()`.
 
 ## Installation
 
@@ -60,7 +60,7 @@ library(congressapi)
 # Retrieves all house bills from the 117th Congress
 bill <- 
     dplyr::tibble(
-      congressapi::congressGet("bill/117/hr")
+      congressapi::get_congress("bill/117/hr")
       )
 
 head(bill)

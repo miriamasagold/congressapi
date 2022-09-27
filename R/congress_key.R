@@ -55,6 +55,7 @@ congress_set_key <- function(key, warn = FALSE) {
 
 
 #' @rdname congress_set_key
+#' @export
 congress_get_key <- function() {
 
   env_key <- Sys.getenv("CONGRESS_API_KEY")

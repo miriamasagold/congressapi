@@ -64,7 +64,7 @@ head(member_tbl)
 
 ## Limits and Pagination
 
-By default, the API returns 20 observations per request. To adjust the amount of data returned, you may pass the `limit` argument to `get_congress()`:
+By default, the API returns 20 observations per request. To adjust the amount of data returned, you may pass the `limit` argument to `get_congress()`. The maximum limit is 250. If greater values are passed, 250 results will be returned.
 
 ```{r}
 rows <- 50
