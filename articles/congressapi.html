@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">congressapi</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,9 +100,9 @@
 <li>nomination</li>
 <li>treaty</li>
 </ul>
-<p>Here is a basic call to <code><a href="../reference/congressGet.html">congressGet()</a></code>.</p>
+<p>Here is a basic call to <code><a href="../reference/get_congress.html">get_congress()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">member</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/congressGet.html">congressGet</a></span><span class="op">(</span><span class="st">"member"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">member</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_congress.html">get_congress</a></span><span class="op">(</span><span class="st">"member"</span><span class="op">)</span></span>
 <span><span class="va">member_tbl</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span><span class="va">member</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">member_tbl</span><span class="op">)</span></span>
@@ -121,11 +121,11 @@
 <div class="section level3">
 <h3 id="limits-and-pagination">Limits and Pagination<a class="anchor" aria-label="anchor" href="#limits-and-pagination"></a>
 </h3>
-<p>By default, the API returns 20 observations per request. To adjust the amount of data returned, you may pass the <code>limit</code> argument to <code><a href="../reference/congressGet.html">congressGet()</a></code>:</p>
+<p>By default, the API returns 20 observations per request. To adjust the amount of data returned, you may pass the <code>limit</code> argument to <code><a href="../reference/get_congress.html">get_congress()</a></code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rows</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
 <span></span>
-<span><span class="va">bill</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/congressGet.html">congressGet</a></span><span class="op">(</span><span class="st">"bill"</span>, limit <span class="op">=</span> <span class="va">rows</span><span class="op">)</span></span>
+<span><span class="va">bill</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_congress.html">get_congress</a></span><span class="op">(</span><span class="st">"bill"</span>, limit <span class="op">=</span> <span class="va">rows</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">bill</span><span class="op">)</span> <span class="op">==</span> <span class="va">rows</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
@@ -137,7 +137,7 @@
 <span><span class="va">three_pages</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dfr</a></span><span class="op">(</span></span>
 <span>    .x <span class="op">=</span> <span class="va">offsets</span>,</span>
-<span>    .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="../reference/congressGet.html">congressGet</a></span><span class="op">(</span><span class="st">"bill"</span>,</span>
+<span>    .f <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="../reference/get_congress.html">get_congress</a></span><span class="op">(</span><span class="st">"bill"</span>,</span>
 <span>                       offset <span class="op">=</span> <span class="va">.x</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
@@ -148,7 +148,7 @@
 <div class="section level3">
 <h3 id="additional-parameters">Additional Parameters<a class="anchor" aria-label="anchor" href="#additional-parameters"></a>
 </h3>
-<p>In addition to offset and limit, several additional parameters may be passed to the GET request via <code><a href="../reference/congressGet.html">congressGet()</a></code>. These include <code>sort</code> (either <code>"asc"</code> or <code>"desc"</code>), <code>fromDateTime</code>, and <code>toDateTime</code> (full timestamps required).</p>
+<p>In addition to offset and limit, several additional parameters may be passed to the GET request via <code><a href="../reference/get_congress.html">get_congress()</a></code>. These include <code>sort</code> (either <code>"asc"</code> or <code>"desc"</code>), <code>fromDateTime</code>, and <code>toDateTime</code> (full timestamps required).</p>
 <p>Note that many endpoints, like bill, allow you to explicitly specify a congressional session in the main endpoint path (e.g., <code>"bill/117"</code>). In some cases, this may be preferable to timestamp customization.</p>
 </div>
 <div class="section level3">
@@ -156,7 +156,7 @@
 </h3>
 <p>Within each endpoint, a variety of more specialized paths may be specified. For instance, to retrieve detailed information on a specific member, you can add a <a href="https://www.congress.gov/help/field-values/member-bioguide-ids" class="external-link">BioGuide ID</a>. Below, note the warning message. Some endpoints cannot be coerced into dataframes and will instead return the content of the API request.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">single_member</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/congressGet.html">congressGet</a></span><span class="op">(</span><span class="st">"member/S000033"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">single_member</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_congress.html">get_congress</a></span><span class="op">(</span><span class="st">"member/S000033"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: endpoint cannot be coerced to dataframe</span></span>
 <span></span>
 <span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">single_member</span><span class="op">)</span></span>
