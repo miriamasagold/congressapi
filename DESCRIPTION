@@ -2,7 +2,7 @@ Package: congressapi
 Title: R Client for Official Congress API
 Version: 0.1.0
 Authors@R: 
-    person("Miriam", "Gold", , "goldasa99@gmail.com", role = c("aut", "cre"))
+    person("Miriam", "Gold", , "miriamasagold@gmail.com", role = c("aut", "cre"))
 Description: Provides consistent access to Congressional data across 11 endpoints.
 License: GPL (>= 3)
 Encoding: UTF-8
