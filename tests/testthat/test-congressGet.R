@@ -86,6 +86,54 @@ test_that("", {
                   "data.frame")
 })
 
+test_that("", {
+
+  skip_if_key_missing()
+
+  expect_s3_class(congressGet("amendment"),
+                  "data.frame")
+})
+
+test_that("", {
+
+  skip_if_key_missing()
+
+  expect_s3_class(congressGet("bill"),
+                  "data.frame")
+})
+
+test_that("", {
+
+  skip_if_key_missing()
+
+  expect_s3_class(congressGet("bill"),
+                  "data.frame")
+})
+
+test_that("", {
+
+  skip_if_key_missing()
+
+  expect_s3_class(congressGet("bill"),
+                  "data.frame")
+})
+
+test_that("", {
+
+  skip_if_key_missing()
+
+  expect_s3_class(congressGet("bill"),
+                  "data.frame")
+})
+
+test_that("", {
+
+  skip_if_key_missing()
+
+  expect_s3_class(congressGet("bill"),
+                  "data.frame")
+})
+
 
 
 
