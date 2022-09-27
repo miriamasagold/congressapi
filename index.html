@@ -60,7 +60,7 @@
 <div class="page-header"><h1 id="congressapi">congressapi<a class="anchor" aria-label="anchor" href="#congressapi"></a>
 </h1></div>
 <!-- badges: start -->
-<p><strong>congressapi</strong> provides an extremely lightweight wrapper, facilitating seamless data retrieval from the <a href="https://api.congress.gov/" class="external-link">official Congress API</a> via a single function, <code>congressGet()</code>.</p>
+<p><strong>congressapi</strong> provides an extremely lightweight wrapper, facilitating seamless data retrieval from the <a href="https://api.congress.gov/" class="external-link">official Congress API</a> via a single function, <code><a href="reference/get_congress.html">get_congress()</a></code>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -92,19 +92,19 @@
 <span><span class="co"># Retrieves all house bills from the 117th Congress</span></span>
 <span><span class="va">bill</span> <span class="op">&lt;-</span> </span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
-<span>      <span class="fu">congressapi</span><span class="fu">::</span><span class="fu">congressGet</span><span class="op">(</span><span class="st">"bill/117/hr"</span><span class="op">)</span></span>
+<span>      <span class="fu">congressapi</span><span class="fu">::</span><span class="fu"><a href="reference/get_congress.html">get_congress</a></span><span class="op">(</span><span class="st">"bill/117/hr"</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">bill</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 6 x 12</span></span>
 <span><span class="co">#&gt;   congress number originChamber originChamberCode title         type  updateDate</span></span>
 <span><span class="co">#&gt;      &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;     </span></span>
-<span><span class="co">#&gt; 1      117 8966   House         H                 To clarify r~ HR    2022-09-24</span></span>
-<span><span class="co">#&gt; 2      117 8965   House         H                 To amend the~ HR    2022-09-24</span></span>
-<span><span class="co">#&gt; 3      117 8949   House         H                 To amend the~ HR    2022-09-24</span></span>
-<span><span class="co">#&gt; 4      117 5768   House         H                 VICTIM Act o~ HR    2022-09-24</span></span>
-<span><span class="co">#&gt; 5      117 4118   House         H                 Break the Cy~ HR    2022-09-24</span></span>
-<span><span class="co">#&gt; 6      117 7846   House         H                 Veterans’ Co~ HR    2022-09-24</span></span>
+<span><span class="co">#&gt; 1      117 3460   House         H                 State Antitr~ HR    2022-09-27</span></span>
+<span><span class="co">#&gt; 2      117 3843   House         H                 Merger Filin~ HR    2022-09-27</span></span>
+<span><span class="co">#&gt; 3      117 2250   House         H                 Department o~ HR    2022-09-27</span></span>
+<span><span class="co">#&gt; 4      117 8983   House         H                 To rescind c~ HR    2022-09-27</span></span>
+<span><span class="co">#&gt; 5      117 8987   House         H                 Fairness for~ HR    2022-09-27</span></span>
+<span><span class="co">#&gt; 6      117 8984   House         H                 To amend the~ HR    2022-09-27</span></span>
 <span><span class="co">#&gt; # ... with 5 more variables: updateDateIncludingText &lt;chr&gt;, url &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   latestAction_actionDate &lt;chr&gt;, latestAction_text &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   latestAction_actionTime &lt;chr&gt;</span></span></code></pre></div>
