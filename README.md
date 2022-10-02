@@ -8,6 +8,8 @@
 [![R-CMD-check](https://github.com/AMGold99/congressapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AMGold99/congressapi/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test
+coverage](https://codecov.io/gh/AMGold99/congressapi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AMGold99/congressapi?branch=main)
 <!-- badges: end -->
 <img src='man/figures/README-hexsticker.svg' align="right" height="138.5" />
 
@@ -56,12 +58,12 @@ head(bill)
 #> # A tibble: 6 x 12
 #>   congress number originChamber originChamberCode title         type  updateDate
 #>      <int> <chr>  <chr>         <chr>             <chr>         <chr> <chr>     
-#> 1      117 3460   House         H                 State Antitr~ HR    2022-09-27
-#> 2      117 3843   House         H                 Merger Filin~ HR    2022-09-27
-#> 3      117 2250   House         H                 Department o~ HR    2022-09-27
-#> 4      117 8983   House         H                 To rescind c~ HR    2022-09-27
-#> 5      117 8987   House         H                 Fairness for~ HR    2022-09-27
-#> 6      117 8984   House         H                 To amend the~ HR    2022-09-27
+#> 1      117 6833   House         H                 Continuing A~ HR    2022-10-02
+#> 2      117 8987   House         H                 Fairness for~ HR    2022-10-02
+#> 3      117 8982   House         H                 Bulk Infant ~ HR    2022-10-02
+#> 4      117 1766   House         H                 FTC Collabor~ HR    2022-10-01
+#> 5      117 9097   House         H                 To expand an~ HR    2022-10-01
+#> 6      117 9102   House         H                 To reinstate~ HR    2022-10-01
 #> # ... with 5 more variables: updateDateIncludingText <chr>, url <chr>,
 #> #   latestAction_actionDate <chr>, latestAction_text <chr>,
 #> #   latestAction_actionTime <chr>
