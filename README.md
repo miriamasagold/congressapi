@@ -5,11 +5,11 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/AMGold99/congressapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AMGold99/congressapi/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/miriamasagold/congressapi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/miriamasagold/congressapi/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![Codecov test
-coverage](https://codecov.io/gh/AMGold99/congressapi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AMGold99/congressapi?branch=main)
+coverage](https://codecov.io/gh/miriamasagold/congressapi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/miriamasagold/congressapi?branch=main)
 <!-- badges: end -->
 <img src='man/figures/README-hexsticker.svg' align="right" height="138.5" />
 
