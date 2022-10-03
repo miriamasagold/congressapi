@@ -51,6 +51,14 @@ congress_data.bill <- function(parsed) {
 
     return(parsed$content)
 
+  } else if (length(bill_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+              parsed$path,
+              call. = FALSE)
+
+    return(parsed$content)
+
   } else {
 
     out <-
@@ -75,9 +83,15 @@ congress_data.amendment <- function(parsed) {
 
     return(parsed$content)
 
-  } else {
+  } else if (length(amendment_df) == 0) {
 
-  }
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
+
+    return(parsed$content)
+
+  } else {
 
   out <-
     rename_nested(
@@ -86,6 +100,7 @@ congress_data.amendment <- function(parsed) {
       )
 
   return(out)
+  }
 
 }
 congress_data.summaries <- function(parsed) {
@@ -96,6 +111,14 @@ congress_data.summaries <- function(parsed) {
   if (is.null(summaries_df)) {
 
     message("Warning: endpoint cannot be coerced to dataframe\n")
+
+    return(parsed$content)
+
+  } else if (length(summaries_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
 
     return(parsed$content)
 
@@ -123,6 +146,13 @@ congress_data.congress <- function(parsed) {
 
     return(parsed$content)
 
+  } else if (length(congress_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
+
+    return(parsed$content)
   } else {
 
     congress_sessions <- congress_df[['sessions']]
@@ -150,8 +180,7 @@ congress_data.congress <- function(parsed) {
       )
 
     return(out)
-
-  }
+    }
   }
 congress_data.member <- function(parsed) {
 
@@ -164,7 +193,15 @@ congress_data.member <- function(parsed) {
 
     return(parsed$content)
 
-  } else {
+  } else if (length(member_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
+
+    return(parsed$content)
+
+    } else {
 
     member_no_depict_serve <-
       member_df[, !(names(member_df) %in% c("depiction", "served"))]
@@ -211,6 +248,7 @@ congress_data.member <- function(parsed) {
   }
 
 }
+
 congress_data.committee <- function(parsed) {
 
   # Extract dataframe from content
@@ -222,25 +260,25 @@ congress_data.committee <- function(parsed) {
 
     return(parsed$content)
 
+  } else if (length(cmte_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
+
+    return(parsed$content)
+
   } else {
 
-    # Remove nested/object columns
-    cmte_no_parent_subcmte <-
-      cmte_df[, !(names(cmte_df) %in% c("parent", "subcommittees"))]
+    # remove 'parent$' prefixes from parent columns
+    cmte_unnested <- rename_nested(cmte_df, "parent")
 
-    # paste 'parent' before parent committee columns
-    cmte_parent <- cmte_df$parent
-
-    names(cmte_parent) <-
-      paste0("parent_", names(cmte_parent))
-
-    # reattach parent columns
+    # Remove subcommittees list column
     cmte_no_subcmte <-
-      cbind(cmte_no_parent_subcmte,
-            cmte_parent)
+      cmte_unnested[, !(names(cmte_unnested) %in% c("subcommittees"))]
 
     # extract subcommittee columns
-    cmte_subcmte <- cmte_df$subcommittees
+    cmte_subcmte <- cmte_df[["subcommittees"]]
 
     # Find amount of repeated rows needed in original dataframe
     # to accomodate multiple subcommittees per committee
@@ -260,7 +298,7 @@ congress_data.committee <- function(parsed) {
     # Replace empty subcommittee entries with NA's so they aren't lost in binding
     cmte_subcmte[
       vapply(cmte_subcmte,
-             function(x) nrow(x) == 0,
+             function(x) nrow(x) %in% c(0, NULL),
              FUN.VALUE = FALSE)
       ] <- NA
 
@@ -276,7 +314,8 @@ congress_data.committee <- function(parsed) {
     out <-
       cbind(
         cmte_expanded_df,
-        subcmte_unnested
+        subcmte_unnested,
+        row.names = NULL
         )
 
     return(out)
@@ -294,6 +333,14 @@ congress_data.committeeReport <- function(parsed) {
 
     return(parsed$content)
 
+  } else if (length(cmteRep_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
+
+    return(parsed$content)
+
   } else {
 
     return(cmteRep_df)
@@ -307,6 +354,14 @@ congress_data.congressional_record <- function(parsed) {
   if (is.null(cr_df)) {
 
     message("Warning: endpoint cannot be coerced to dataframe\n")
+
+    return(parsed$content)
+
+  } else if (length(cr_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
 
     return(parsed$content)
 
@@ -381,6 +436,14 @@ congress_data.house_communication <- function(parsed) {
 
     return(parsed$content)
 
+  } else if (length(hs_comm_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
+
+    return(parsed$content)
+
   } else {
 
     out <-
@@ -392,7 +455,8 @@ congress_data.house_communication <- function(parsed) {
     return(out)
 
   }
-  }
+}
+
 congress_data.nomination <- function(parsed) {
 
   nom_df <-
@@ -401,6 +465,14 @@ congress_data.nomination <- function(parsed) {
   if (is.null(nom_df)) {
 
     message("Warning: endpoint cannot be coerced to dataframe\n")
+
+    return(parsed$content)
+
+  } else if (length(nom_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
 
     return(parsed$content)
 
@@ -444,7 +516,15 @@ congress_data.treaty <- function(parsed) {
 
     return(parsed$content)
 
-  } else {
+    } else if (length(treaty_df) == 0) {
+
+    warning("No content was returned.\nYour API call was: ",
+            parsed$path,
+            call. = FALSE)
+
+    return(parsed$content)
+
+    } else {
 
     parts_empty <-
       min(

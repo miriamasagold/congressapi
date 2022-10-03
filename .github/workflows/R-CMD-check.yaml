@@ -29,6 +29,7 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
       CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY}}
       NOT_CRAN: true
+      CODECOV_TOKEN: "cdc0f3aa-47a1-4b98-a8b9-86b4cfb1f3e2"
 
     steps:
       - uses: actions/checkout@v2

@@ -72,13 +72,6 @@ check_response <- function(resp) {
 
   }
 
-  if (identical(content, "")) {
-    stop("No content was returned.\nYour API call was: ",
-         resp$url,
-         call. = FALSE)
-  }
-
-
   return(resp)
 
 }
