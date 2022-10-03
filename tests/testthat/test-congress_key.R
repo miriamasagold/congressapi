@@ -15,18 +15,6 @@ test_that("congress_get_key() works", {
 
 })
 
-test_that("congress_set_key() prompts user input in console", {
-
-  old_key <- congress_get_key()
-  on.exit(congress_set_key(old_key),
-          add = TRUE,
-          after = FALSE)
-
-  invisible(congress_set_key("new_key"))
-
-  expect_output(congress_set_key("newest_key", warn = FALSE))
-
-})
 
 test_that("get_congress() throws error if no key has been set", {
 

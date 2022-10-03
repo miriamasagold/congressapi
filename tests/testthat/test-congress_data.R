@@ -360,3 +360,20 @@ test_that("congress_data works for treaty", {
   }
 
 })
+
+test_that("NULL dataframe throws warning", {
+
+  parsed <-
+    structure(
+      list(content =
+        list(
+          treaties = NULL
+            )
+        ),
+    class = c("congress_api", "treaty")
+  )
+
+  expect_message(congress_data.treaty(parsed),
+                 "Warning: endpoint cannot be coerced to dataframe")
+
+})
