@@ -37,6 +37,8 @@ test_that("append_args takes multiple key-value pair", {
 })
 
 
+
+
 #==========================================
 # extract_endpoint
 #==========================================
@@ -80,7 +82,7 @@ test_that("extract_endpoint - to _ replacement works, n-items", {
 
 test_that("bill endpoint returns data.frame", {
 
-  skip_on_cran()
+  #skip_on_cran()
   skip_if_key_missing()
 
   expect_s3_class(get_congress("bill"),

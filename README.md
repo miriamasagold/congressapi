@@ -11,7 +11,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![Codecov test
 coverage](https://codecov.io/gh/miriamasagold/congressapi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/miriamasagold/congressapi?branch=main)
 <!-- badges: end -->
-<img src='man/figures/README-hexsticker.svg' align="right" height="138.5" />
+<img src='man/figures/logo.svg' align="right" height="138.5" />
 
 **congressapi** provides an extremely lightweight wrapper, facilitating
 seamless data retrieval from the [official Congress
@@ -58,7 +58,7 @@ head(bill)
 #> # A tibble: 6 x 12
 #>   congress number originChamber originChamberCode title         type  updateDate
 #>      <int> <chr>  <chr>         <chr>             <chr>         <chr> <chr>     
-#> 1      117 6833   House         H                 Continuing A~ HR    2022-10-02
+#> 1      117 6833   House         H                 Continuing A~ HR    2022-10-03
 #> 2      117 8987   House         H                 Fairness for~ HR    2022-10-02
 #> 3      117 8982   House         H                 Bulk Infant ~ HR    2022-10-02
 #> 4      117 1766   House         H                 FTC Collabor~ HR    2022-10-01

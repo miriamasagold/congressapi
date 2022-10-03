@@ -3,7 +3,7 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 ^\.github$
-^man/figures/README-hexsticker\.svg$
+^man/figures/logo\.svg$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
