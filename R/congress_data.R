@@ -22,9 +22,9 @@ rename_nested <- function(.data, col) {
 
 }
 
-replace_empty <- function(x) {
+replace_empty <- function(x, empty_char) {
 
-  x[which(x == "")] <- NA
+  x[which(x == empty_char)] <- NA
 
   return(x)
 
@@ -184,7 +184,6 @@ congress_data.congress <- function(parsed) {
   }
 congress_data.member <- function(parsed) {
 
-
   member_df <- parsed[['content']][['members']]
 
   if (is.null(member_df)) {
@@ -203,45 +202,90 @@ congress_data.member <- function(parsed) {
 
     } else {
 
-    member_no_depict_serve <-
-      member_df[, !(names(member_df) %in% c("depiction", "served"))]
+      member_df <-
+        rename_nested(
+          member_df,
+          "depiction"
+        )
 
-    member_served <- member_df$served
+    member_no_serve <-
+      member_df[, !(names(member_df) %in% "served")]
 
-    chambers <- names(member_served)
+    member_served <- member_df[['served']]
 
-    clean_serve <- function(chamber) {
+    member_served <-
+      cbind(member_df['bioguideId'],
+            member_served)
 
-      null_dates <- vapply(member_served[[chamber]], is.null,
-                           FUN.VALUE = TRUE)
+    # Add House or Senated served column if one if missing
+    both_chambers <- c("House", "Senate")
 
-      member_served[[chamber]][null_dates] <- NA
+    check_names <- base::intersect(both_chambers,
+                    names(member_served))
 
-      cl_s <- do.call(rbind, member_served[[chamber]])
+    if (!base::setequal(check_names, both_chambers)) {
 
-      cl_s <- cl_s[, c(2,1)]
+      chamber_to_add <- base::setdiff(both_chambers, check_names)
 
-      names(cl_s) <- paste0(tolower(chamber), "_",
-                           names(cl_s))
-
-      return(cl_s)
+      member_served[[chamber_to_add]] <- list(NULL)
 
     }
 
-    cleaned_chambers <- lapply(chambers, clean_serve)
 
-    member_served_clean <- do.call(cbind, cleaned_chambers)
+    serve_row <- function(data, chamber) {
 
-    member_depiction <- member_df$depiction
+      c_row <- data[[chamber]][[1]]
 
-    names(member_depiction) <-
-      paste0("depiction_", names(member_depiction))
+      c_len <- nrow(c_row)
 
-    out <- cbind(
-      member_no_depict_serve,
-      member_depiction,
-      member_served_clean
-    )
+      if (is.null(c_row)) {
+
+        c_row <- data.frame(
+          end = NA,
+          start = NA
+        )
+      }
+
+      names(c_row) <- paste0(tolower(chamber), "_", names(c_row))
+
+      return(c_row)
+
+    }
+
+    serve_expand <- function(data, row) {
+
+      data_row <- data[row, ]
+
+      expanded <- lapply(both_chambers, serve_row, data = data_row)
+
+      bio_rep <-
+        max(
+          vapply(expanded, nrow, FUN.VALUE = 0)
+        )
+
+      bio <- data_row[['bioguideId']]
+
+      bio_rows <- data.frame(bioguideId = rep(bio, bio_rep))
+
+      expanded <- append(bio_rows, expanded)
+
+      do.call(cbind, expanded)
+    }
+
+    serve_list <-
+      lapply(seq_len(nrow(member_served)), serve_expand, data = member_served)
+
+    serve_df <-
+      do.call(
+        rbind,
+        serve_list
+      )
+
+    out <-
+      merge(serve_df,
+            member_no_serve,
+            all.x = TRUE
+            )
 
     return(out)
 
@@ -544,7 +588,8 @@ congress_data.treaty <- function(parsed) {
      as.data.frame(
       lapply(
         treaty_df,
-        replace_empty
+        replace_empty,
+        empty_char = ""
       )
     )
 

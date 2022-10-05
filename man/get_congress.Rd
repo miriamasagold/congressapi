@@ -34,7 +34,7 @@ such as \code{sort = "desc"} or \code{fromDateTime = "2022-04-01T00:00:00Z"}.
 Pagination may be executed using \code{offset}. Amount of rows returned may be increased
 using \code{limit}.
 
-Visit \url{https://api.congress.gov/} for more details.
+Visit https://api.congress.gov/ for more details.
 }
 \examples{
 \dontrun{

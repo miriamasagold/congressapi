@@ -146,7 +146,7 @@ print.congress_api <- function(x, ...) {
 #' Pagination may be executed using `offset`. Amount of rows returned may be increased
 #' using `limit`.
 #'
-#' Visit [https://api.congress.gov/](https://api.congress.gov/) for more details.
+#' Visit https://api.congress.gov/ for more details.
 #'
 #' @return If return.data = TRUE, returns a data.frame object of 20 rows by default. Otherwise, a JSON structure is returned.
 #'

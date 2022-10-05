@@ -2,7 +2,7 @@
 
 test_that("rename_nested works", {
 
-  #skip_on_cran()
+  skip_on_cran()
 
   bill <- get_congress("bill", return.data = F)
 
@@ -26,7 +26,7 @@ test_that("replace_empty works", {
   dat <- c("", "x", 1)
 
   expect_identical(
-    replace_empty(x = dat),
+    replace_empty(x = dat, empty_char = ""),
     c(NA, "x", 1)
   )
 

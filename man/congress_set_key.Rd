@@ -22,8 +22,7 @@ A character vector of the currently set API key.
 \code{congress_set_key()} takes a character string API key and saves it as the
 environment variable "CONGRESS_API_KEY". If a key has already been set in the
 session, \code{congress_set_key()} will warn and prompt the user to choose whether
-to overwrite. New keys may be generated at
-\url{https://api.congress.gov/sign-up/}.
+to overwrite. New keys may be generated at https://api.congress.gov/sign-up/
 }
 \details{
 \code{congress_get_key()} retrieves the environment variable.

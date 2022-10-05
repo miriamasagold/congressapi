@@ -1,9 +1,9 @@
 Package: congressapi
-Title: R Client for Official Congress API
+Title: 'R' Client for Official Congress API
 Version: 0.1.0
 Authors@R: 
     person("Miriam", "Gold", , "miriamasagold@gmail.com", role = c("aut", "cre"))
-Description: Provides consistent access to Congressional data across 11 endpoints.
+Description: Provides consistent access to Congressional data across 11 endpoints, using <https://api.congress.gov/>.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
