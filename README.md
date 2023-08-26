@@ -75,4 +75,5 @@ functionality, please submit an
 
 # Note
 
-This project is not endorsed or sponsered by the United States Congress.
+This project is neither endorsed nor sponsored by the United States
+Congress.

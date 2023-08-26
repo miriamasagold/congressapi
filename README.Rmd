@@ -51,11 +51,6 @@ Data may be retrieved from one of eleven base endpoints:
 
 All the user needs to do is specify the endpoint, along with any additional specifications desired:
 
-```{r secret-set-up, include=FALSE}
-Sys.setenv("CONGRESS_API_KEY" = "Q4sx4JhmbiXxePlys49UyztTbiUDkaRkERT3sPKW")
-```
-
-
 ```{r congressGet}
 library(congressapi)
 # Retrieves all house bills from the 117th Congress
@@ -72,4 +67,4 @@ Visit https://miriamasagold.github.io/congressapi/ to read full package document
 
 # Note
 
-This project is not endorsed or sponsered by the United States Congress.
+This project is neither endorsed nor sponsored by the United States Congress.
