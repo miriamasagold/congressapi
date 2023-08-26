@@ -134,12 +134,12 @@ test_that("committee endpoint returns data.frame", {
                   "data.frame")
 })
 
-test_that("committeeReport endpoint returns data.frame", {
+test_that("committee-report endpoint returns data.frame", {
 
   skip_on_cran()
   skip_if_key_missing()
 
-  expect_s3_class(get_congress("committeeReport"),
+  expect_s3_class(get_congress("committee-report"),
                   "data.frame")
 })
 

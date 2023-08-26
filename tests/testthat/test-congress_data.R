@@ -211,12 +211,12 @@ test_that("congress_data works for committee", {
 
 
 
-test_that("congress_data works for committeeReport", {
+test_that("congress_data works for committee-report", {
 
   skip_on_cran()
   skip_if_key_missing()
 
-  resp <- get_congress("committeeReport", return.data = FALSE)
+  resp <- get_congress("committee-report", return.data = FALSE)
 
   resp_df <- resp[['content']][['reports']]
 
@@ -231,7 +231,7 @@ test_that("congress_data works for committeeReport", {
   } else {
 
     expect_s3_class(
-      congress_data.committeeReport(resp),
+      congress_data.committee_report(resp),
       "data.frame"
     )
 
@@ -241,7 +241,7 @@ test_that("congress_data works for committeeReport", {
 
 
 
-test_that("congress_data works for congressional_record", {
+test_that("congress_data works for congressional-record", {
 
   skip_on_cran()
   skip_if_key_missing()
