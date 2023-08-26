@@ -81,7 +81,7 @@ amendments, congressional records, and other content.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>11 base endpoints may be specified: bill, amendments, summaries,
-congress, member, committee, committeeReport, congressional-record,
+congress, member, committee, committee-report, congressional-record,
 house-communication, nomination, and treaty.</p>
 <p>Within each endpoint, multiple additional parameters may be specified to
 filter data based on, for example, congressional session or chamber ("hr" vs. "s").
@@ -98,7 +98,7 @@ using <code>limit</code>.</p>
 <span class="r-in"><span><span class="fu">get_congress</span><span class="op">(</span><span class="st">"bill"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">get_congress</span><span class="op">(</span><span class="st">"congress/116"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">get_congress</span><span class="op">(</span><span class="st">"member/L000174"</span>, return.data <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">get_congress</span><span class="op">(</span><span class="st">"committeeReport/116/hrpt/617/text"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">get_congress</span><span class="op">(</span><span class="st">"committee-report/116/hrpt/617/text"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
