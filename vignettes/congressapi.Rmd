@@ -47,7 +47,7 @@ You may request data from eleven unique endpoints:
 * congress
 * member
 * committee
-* committeeReport
+* committee-report
 * congressional-record
 * house-communication
 * nomination

@@ -43,7 +43,7 @@ Data may be retrieved from one of eleven base endpoints:
 * congress
 * member
 * committee
-* committeeReport
+* committee-report
 * congressional-record
 * house-communication
 * nomination

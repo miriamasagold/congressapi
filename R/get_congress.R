@@ -9,7 +9,7 @@
 #' @param ... Additional formatting options passed to the end of the API call (e.g., `sort = "desc"`). Arguments passed via dots must be named.
 #'
 #' @details 11 base endpoints may be specified: bill, amendments, summaries,
-#' congress, member, committee, committeeReport, congressional-record,
+#' congress, member, committee, committee-report, congressional-record,
 #' house-communication, nomination, and treaty.
 #'
 #' Within each endpoint, multiple additional parameters may be specified to
@@ -28,7 +28,7 @@
 #' get_congress("bill")
 #' get_congress("congress/116")
 #' get_congress("member/L000174", return.data = FALSE)
-#' get_congress("committeeReport/116/hrpt/617/text")
+#' get_congress("committee-report/116/hrpt/617/text")
 #' }
 #' @export
 

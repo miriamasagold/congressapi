@@ -31,17 +31,17 @@ devtools::install_github("miriamasagold/congressapi")
 
 Data may be retrieved from one of eleven base endpoints:
 
--   bill
--   amendment
--   summaries
--   congress
--   member
--   committee
--   committeeReport
--   congressional-record
--   house-communication
--   nomination
--   treaty
+- bill
+- amendment
+- summaries
+- congress
+- member
+- committee
+- committee-report
+- congressional-record
+- house-communication
+- nomination
+- treaty
 
 All the user needs to do is specify the endpoint, along with any
 additional specifications desired:
@@ -55,18 +55,17 @@ bill <-
       )
 
 head(bill)
-#> # A tibble: 6 x 12
+#> # A tibble: 6 × 11
 #>   congress number originChamber originChamberCode title         type  updateDate
 #>      <int> <chr>  <chr>         <chr>             <chr>         <chr> <chr>     
-#> 1      117 6833   House         H                 Continuing A~ HR    2022-10-03
-#> 2      117 8987   House         H                 Fairness for~ HR    2022-10-02
-#> 3      117 8982   House         H                 Bulk Infant ~ HR    2022-10-02
-#> 4      117 1766   House         H                 FTC Collabor~ HR    2022-10-01
-#> 5      117 9097   House         H                 To expand an~ HR    2022-10-01
-#> 6      117 9102   House         H                 To reinstate~ HR    2022-10-01
-#> # ... with 5 more variables: updateDateIncludingText <chr>, url <chr>,
-#> #   latestAction_actionDate <chr>, latestAction_text <chr>,
-#> #   latestAction_actionTime <chr>
+#> 1      117 897    House         H                 Agua Calient… HR    2023-03-09
+#> 2      117 7939   House         H                 Veterans Aut… HR    2023-08-02
+#> 3      117 680    House         H                 For the reli… HR    2023-03-08
+#> 4      117 1917   House         H                 Hazard Eligi… HR    2023-03-09
+#> 5      117 1154   House         H                 Great Dismal… HR    2023-03-09
+#> 6      117 1082   House         H                 Sami's Law    HR    2023-08-25
+#> # ℹ 4 more variables: updateDateIncludingText <chr>, url <chr>,
+#> #   latestAction_actionDate <chr>, latestAction_text <chr>
 ```
 
 Visit <https://miriamasagold.github.io/congressapi/> to read full
